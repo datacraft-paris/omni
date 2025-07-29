@@ -12,7 +12,6 @@ dependencies = [
     "pytest>=8.4.1",
     "openai>=1.97.0",
     "pandas>=2.3.1",
-    "linkedin-api>=2.3.1",
 ]
 
 [project.optional-dependencies]
