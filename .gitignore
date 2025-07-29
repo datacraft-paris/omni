@@ -17,6 +17,7 @@ __pycache__/
 .Python
 src/liscrape.egg-info/
 src/omni_test.egg-info/
+src/omni_test.egg-info
 # IDE
 .vscode/
 .idea/
