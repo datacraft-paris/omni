@@ -1,5 +1,6 @@
 from enum import Enum
 from pydantic import BaseModel, Field, field_validator, ValidationInfo
+import re
 
 class InterestTag(str, Enum):
     DATA_ENGINEERING = "Data Engineering"
@@ -30,8 +31,17 @@ class GeneratedProfileResult(BaseModel):
     def filter_valid_tags(cls, tags: str, info: ValidationInfo) -> str:
         allowed = {tag.value for tag in InterestTag}
         raw_tags = [tag.strip() for tag in tags.split(",")]
-        valid = [tag for tag in raw_tags if tag in allowed]
-        invalid = [tag for tag in raw_tags if tag not in allowed]
+
+        cleaned_tags = []
+        for tag in raw_tags:
+            # Supprimer tout préfixe du style "s :" ou autre
+            tag = re.sub(r"^\w\s*[:\-–]", "", tag).strip()
+            # Supprimer les caractères spéciaux en fin (., ;, etc.)
+            tag = tag.rstrip(".;: ")
+            cleaned_tags.append(tag)
+
+        valid = [tag for tag in cleaned_tags if tag in allowed]
+        invalid = [tag for tag in cleaned_tags if tag not in allowed]
 
         if invalid:
             print(f"[INFO] Tags ignorés car non valides : {invalid}")

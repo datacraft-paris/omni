@@ -1,5 +1,8 @@
+adapters
+core
 enrich_from_csv
-llm_interface
 main
 pipeline
+scrapers
+services
 tag_description_builder

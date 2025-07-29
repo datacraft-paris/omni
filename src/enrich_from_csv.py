@@ -24,6 +24,10 @@ def build_profile_dict(row) -> dict:
     job_title = str(row.get("Métier", "")).strip()
     domain = str(row.get("Domain", "")).strip()
 
+    # 🔐 Vérification : reconstruire l'URL si un identifiant brut est donné
+    if linkedin_url and not linkedin_url.startswith("http"):
+        linkedin_url = f"https://www.linkedin.com/in/{linkedin_url}"
+
     if not linkedin_url and not (job_title or domain):
         raise ValueError("Insufficient data to build profile input.")
 
