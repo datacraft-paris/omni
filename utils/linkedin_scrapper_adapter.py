@@ -1,29 +1,14 @@
-from lipopulate.utils.proxy_utils import fetch_profile, make_api_request, fetch_profile_by_details
-from typing import Dict
+# utils/linkedin_scrapper_adapter.py
 import os
 
-def scrape_linkedin_profile(linkedin_url: str) -> Dict:
-    headers = {"Authorization": f"Bearer {os.getenv('PROXYCURL_API_KEY')}"}
-    raw_data = fetch_profile(linkedin_url, headers)
-    
-    if not raw_data:
-        raise ValueError("LinkedIn scraping failed or profile not found.")
+SCRAPER_TYPE = os.getenv("SCRAPER_TYPE", "mock")  # 'mock' ou 'proxycurl'
 
-    # Adapt to your LinkedInProfile schema
-    summary = raw_data.get("summary", "")
-    headline = raw_data.get("occupation", "")
-    experiences_raw = raw_data.get("experience", [])
+if SCRAPER_TYPE == "proxycurl":
+    from utils.proxycurl_scraper import ProxycurlScraper as ActiveScraper
+else:
+    from utils.mock_scraper import MockScraper as ActiveScraper
 
-    experience = []
-    for exp in experiences_raw:
-        if "title" in exp and "company" in exp:
-            experience.append({
-                "title": exp["title"],
-                "company": exp["company"].get("name", "")
-            })
+scraper = ActiveScraper()
 
-    return {
-        "summary": summary,
-        "headline": headline,
-        "experience": experience
-    }
+def scrape_linkedin_profile(linkedin_url: str):
+    return scraper.scrape(linkedin_url)

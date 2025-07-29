@@ -1,5 +1,5 @@
 from typing import List, Dict
-from src.lipopulate.core.static_values import CENTER_OF_INTEREST_LIST
+from core.static_values import CENTER_OF_INTEREST_LIST
 
 def build_interest_and_description(profile_text: str) -> Dict[str, object]:
     """

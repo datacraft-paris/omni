@@ -108,7 +108,7 @@ def _openai_generate(profile_text, tags_list, api_key, language):
     # Call OpenAI for description
     desc_response = client.completions.create(model="gpt-3.5-turbo-instruct",
         prompt=desc_full_prompt,
-        max_tokens=200)
+        max_tokens=500)
     description = desc_response.choices[0].text.strip()
 
     return {"Intérêt": tags_string, "Description": description}

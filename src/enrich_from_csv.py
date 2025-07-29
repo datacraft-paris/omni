@@ -1,14 +1,19 @@
 import pandas as pd
-from lipopulate.src.pipeline import process_profile
-from lipopulate.utils.linkedin_scrapper_adapter import scrape_linkedin_profile
+from src.pipeline import process_profile
+from utils.linkedin_scrapper_adapter import scrape_linkedin_profile
 
 INPUT_CSV = "data/airtable_export.csv"
 OUTPUT_CSV = "data/enriched_output.csv"
 METHOD = "llm"  # or "manual"
 
+#def is_row_already_enriched(row) -> bool:
 def is_row_already_enriched(row) -> bool:
     """Check if the row already contains both 'Intérêt' and 'Description'."""
-    return bool(str(row.get("Intérêt", "")).strip()) and bool(str(row.get("Description", "")).strip())
+    interet = row.get("Intérêt", "")
+    description = row.get("Description", "")
+    print(f"DEBUG Intérêt: {row.get('Intérêt')}, Description: {row.get('Description')}")
+    return pd.notna(interet) and str(interet).strip() != "" and \
+           pd.notna(description) and str(description).strip() != ""
 
 def build_profile_dict(row) -> dict:
     """
@@ -22,6 +27,7 @@ def build_profile_dict(row) -> dict:
         raise ValueError("Insufficient data to build profile input.")
 
     if linkedin_url:
+        print("Scraping LinkedIn profile from URL:", linkedin_url)
         profile_dict = scrape_linkedin_profile(linkedin_url)
 
         # 💡 Optionally enrich summary
