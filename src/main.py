@@ -1,7 +1,7 @@
 import os
 import sys
 from src.tag_description_builder import build_interest_and_description
-from utils.llm_interface import generate_interest_and_description
+from services.llm_interface import generate_interest_and_description
 from core.static_values import CENTER_OF_INTEREST_LIST
 from core.schema import GeneratedProfileResult, LinkedInProfile
 from utils.crud import get_profile_text
