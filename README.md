@@ -6,6 +6,12 @@ This project enriches people data from a CSV (e.g. Airtable export) using Linked
 
 ## ⚙️ Setup
 
+### 0. Clone repo
+
+```bash
+git clone git@github.com:datacraft-paris/omni.git
+```
+
 ### 1. Install dependencies
 
 Install via [`uv`](https://github.com/astral-sh/uv):

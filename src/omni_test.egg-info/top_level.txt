@@ -1,8 +1,0 @@
-adapters
-core
-enrich_from_csv
-main
-pipeline
-scrapers
-services
-tag_description_builder
