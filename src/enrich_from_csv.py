@@ -1,6 +1,6 @@
 import pandas as pd
-from lipopulate.src.pipeline import process_profile
-from lipopulate.utils.linkedin_scrapper_adapter import scrape_linkedin_profile
+from src.pipeline import process_profile
+from utils.linkedin_scrapper_adapter import scrape_linkedin_profile
 
 INPUT_CSV = "data/airtable_export.csv"
 OUTPUT_CSV = "data/enriched_output.csv"

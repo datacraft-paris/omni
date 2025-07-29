@@ -1,7 +1,7 @@
 [project]
-name = "liscrape"
+name = "omni-test"
 version = "0.1.0"
-description = "LinkedIn profile scraping tool using Proxycurl API with Airtable integration"
+description = "Tool for populate Datacraft tables with LinkedIn information and LLM logic."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
