@@ -1,5 +1,5 @@
 import pandas as pd
-from src.pipeline import process_profile
+from core.pipeline import process_profile
 from adapters.linkedin_scraper_adapter import scrape_linkedin_profile
 
 
