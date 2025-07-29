@@ -1,13 +1,11 @@
-import json
 import os
 import sys
-from src.lipopulate.tag_description_builder import build_interest_and_description
-from src.lipopulate.core.static_values import CENTER_OF_INTEREST_LIST
-from src.lipopulate.llm_interface import generate_interest_and_description
-from src.lipopulate.core.schema import GeneratedProfileResult, LinkedInProfile
-from src.lipopulate.utils.crud import get_profile_text
+from src.tag_description_builder import build_interest_and_description
+from services.llm_interface import generate_interest_and_description
+from core.static_values import CENTER_OF_INTEREST_LIST
+from core.schema import GeneratedProfileResult, LinkedInProfile
+from utils.crud import get_profile_text
 from pydantic import ValidationError
-
 
 if __name__ == "__main__":
     """
